@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button, Modal } from 'antd';
+import { useModal } from './contexts';
+
+const destroy = () => {
+  console.log(1)
+  Modal.destroyAll();
+}
 
 function App() {
+  const { openModal, closeModal } = useModal();
+
+  const handleClick = () => {
+    openModal(
+      <div>
+        Hello
+        <Button type="primary" onClick={() => closeModal()}>
+          Open Modal of 1000px width
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Button type="primary" onClick={handleClick}>
+        Open Modal of 1000px width
+      </Button>
     </div>
   );
 }

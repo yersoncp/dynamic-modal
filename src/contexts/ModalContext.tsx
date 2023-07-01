@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import React, { createContext, ReactNode, useContext, useMemo, useReducer } from "react";
 
 interface FunctionProps extends State {
@@ -63,6 +64,16 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   return <>
     <ModalContext.Provider value={value}>
       {children}
+
+      <Modal
+        title="Modal 1000px width"
+        centered
+        open={!!state.modalView}
+        onOk={() => closeModal()}
+        onCancel={() => closeModal()}
+      >
+        {state?.modalView}
+      </Modal>
     </ModalContext.Provider>
   </>
 };
